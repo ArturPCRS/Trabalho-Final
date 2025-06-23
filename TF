@@ -1,0 +1,169 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Trabalho{
+    
+    //Método para mostrar a matriz;
+    public static void MostrarMatriz(char[][] matriz, int linhas, int colunas){
+    for (int l=0; l<linhas; l++){
+     for (int c=0; c<colunas; c++){
+    System.out.printf(" %c ", matriz[l][c]);
+    }
+    System.out.print("\n");
+    }
+}
+
+    //Método para remover o valor negativo de um número;
+    public static double Modulo(int valor)
+    {
+    return Math.sqrt(valor * valor);
+}
+
+    //Método principal;
+    public static void main (){
+    Scanner Input = new Scanner(System.in);
+    
+    //Informações da matriz;
+    System.out.printf("Informe o número de linhas: ");
+    int linhas = Input.nextInt(); //Altura;
+    if (linhas<3){
+    System.out.printf("Porfavor, informe um número maior que 3"); //Quantidade maior que 3
+    System.exit(0);
+    }
+    
+    System.out.printf("Informe o número de colunas: ");
+    int colunas = Input.nextInt(); //Largura;
+    if (colunas<3){
+    System.out.printf("Porfavor, informe um número maior que 3"); //Quantidade maior que 3
+    System.exit(0);
+    }
+    
+    char matriz[][] = new char[linhas][colunas];
+    
+    //Montar a matriz com pontos
+    for(int l=0; l<linhas; l++){
+        for(int c=0; c<colunas; c++){
+        matriz[l][c] = '.';
+        }
+    }
+    
+    Random rd = new Random();
+    
+    //Pontos de origens;
+    int PontoDeOrigemA;
+    int PontoDeOrigemB;
+    int PontoDeOrigemC;
+    int PontoDeOrigemD;
+    int PontoDeDestinoA;
+    int PontoDeDestinoB;
+    int PontoDeDestinoC;
+    int PontoDeDestinoD;
+    
+    
+    //Sortear e evitar que os pontos tenham posições sorteadas iguais;
+    //Sorteia A e B;
+    do{
+    PontoDeOrigemA = rd.nextInt(colunas);
+    PontoDeOrigemB = rd.nextInt(linhas);
+    PontoDeDestinoA = rd.nextInt(colunas);
+    PontoDeDestinoB = rd.nextInt(linhas);
+    }while (PontoDeOrigemA == PontoDeDestinoA && PontoDeOrigemB == PontoDeDestinoB);
+
+    //Sorteia C e D e não repete anteriores;
+    do{
+    PontoDeOrigemC = rd.nextInt(colunas);
+    PontoDeOrigemD = rd.nextInt(linhas);
+    }while ((PontoDeOrigemC == PontoDeOrigemA && PontoDeOrigemD == PontoDeOrigemB) ||
+    (PontoDeOrigemC == PontoDeDestinoA && PontoDeOrigemD == PontoDeDestinoB));
+
+    do{
+    PontoDeDestinoC = rd.nextInt(colunas);
+    PontoDeDestinoD = rd.nextInt(linhas);
+    } 
+    while ((PontoDeDestinoC == PontoDeOrigemA && PontoDeDestinoD == PontoDeOrigemB) ||
+    (PontoDeDestinoC == PontoDeDestinoA && PontoDeDestinoD == PontoDeDestinoB) ||
+    (PontoDeDestinoC == PontoDeOrigemC && PontoDeDestinoD == PontoDeOrigemD));
+    
+    //Calculo de Distancias;
+    double DistanciaA = Modulo(PontoDeOrigemA-PontoDeDestinoA);
+    double DistanciaB = Modulo(PontoDeOrigemB-PontoDeDestinoB);
+    double DistanciaC = Modulo(PontoDeOrigemC-PontoDeDestinoC);
+    double DistanciaD = Modulo(PontoDeOrigemD-PontoDeDestinoD);
+    
+    double Distancia = DistanciaA + DistanciaB; 
+    if (Distancia==0){ // Evitar divisão por zero
+    Distancia = 1;
+    }
+    double Distancia2 = DistanciaC + DistanciaD;
+    if (Distancia2==0){ // Evitar divisão por zero
+    Distancia2 = 1;
+    }
+    
+    //Calculo do deslocamento;
+    double DeslocamentoA= DistanciaA / Distancia;
+    double DeslocamentoB = DistanciaB / Distancia;
+    double DeslocamentoC = DistanciaC / Distancia2;
+    double DeslocamentoD = DistanciaD / Distancia2;
+    
+    //Instanciar Posições;
+    double PosicaoA = PontoDeOrigemA;
+    double PosicaoB = PontoDeOrigemB;
+    double PosicaoC = PontoDeOrigemC;
+    double PosicaoD = PontoDeOrigemD;
+    
+    //Montar a distancia 1 (A->B);
+    for (int direcao=0; direcao<Distancia; direcao++){
+    if (matriz[(int)PosicaoB][(int)PosicaoA] == '.'){
+    matriz[(int)PosicaoB][(int)PosicaoA] = '+';
+    }
+    //Linhas
+    if (PontoDeDestinoB > PontoDeOrigemB){ // esta abaixo da de origem?
+    PosicaoB += DeslocamentoB; 
+    }
+    else if (PontoDeDestinoB < PontoDeOrigemB){ // destino esta acima da de origem?
+    PosicaoB -= DeslocamentoB; 
+    }
+
+    //Colunas
+    if (PontoDeDestinoA > PontoDeOrigemA){ // esta a direita da de origem?
+    PosicaoA += DeslocamentoA; 
+    }
+    else if (PontoDeDestinoA < PontoDeOrigemA){ // esta a esquerda da de origem?
+    PosicaoA -= DeslocamentoA; 
+     
+    }
+    }
+    
+    //Montar a distancia 2 (C->D);
+    for (int direcao=0; direcao<Distancia2; direcao++){
+    if (matriz[(int)PosicaoB][(int)PosicaoA] == '.'){
+        matriz[(int)PosicaoD][(int)PosicaoC] = '*';
+    }
+    
+    if (PontoDeDestinoD > PontoDeOrigemD){ // esta abaixo da de origem?
+    PosicaoD += DeslocamentoD;
+    }
+    
+    else if (PontoDeDestinoD < PontoDeOrigemD){ // destino esta acima da de origem?
+    PosicaoD -= DeslocamentoD;
+    }
+    
+    if (PontoDeDestinoC > PontoDeOrigemC){ // esta a direita da de origem?
+    PosicaoC += DeslocamentoC;
+    }
+    
+    else if (PontoDeDestinoC < PontoDeOrigemC){ // esta a esquerda da de origem?
+    PosicaoC -= DeslocamentoC;
+    }    
+    
+    }
+
+    //Pontos de Origem e Pontos de Destino;
+    matriz[PontoDeOrigemB][PontoDeOrigemA] = 'A';
+    matriz[PontoDeDestinoB][PontoDeDestinoA] = 'B';
+    matriz[PontoDeOrigemD][PontoDeOrigemC] = 'C';
+    matriz[PontoDeDestinoD][PontoDeDestinoC] = 'D';
+    
+    //Imprime a matriz com todos os dados.
+    MostrarMatriz(matriz, linhas, colunas);
+}
+}
