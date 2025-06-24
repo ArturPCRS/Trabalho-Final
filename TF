@@ -180,16 +180,18 @@ public class Trabalho{
     usado[PontoDeOrigemD][PontoDeOrigemC] = true;
     usado[PontoDeDestinoD][PontoDeDestinoC] = true;
     
-    System.out.printf("\nPonto A: L=%d  C=%d", PontoDeOrigemB, PontoDeOrigemA);
+    System.out.printf("\nSorteando os pontos... ");
+    System.out.print("\n");
+    System.out.printf("\n::: Ponto A: L=%d  C=%d", PontoDeOrigemB, PontoDeOrigemA);
     //matriz[PontoDeOrigemB][PontoDeOrigemA] = 'A';   ->   Posição A
     
-    System.out.printf("\nPonto B: L=%d  C=%d", PontoDeDestinoB, PontoDeDestinoA);
+    System.out.printf("\n::: Ponto B: L=%d  C=%d", PontoDeDestinoB, PontoDeDestinoA);
     //matriz[PontoDeDestinoB][PontoDeDestinoA] = 'B'; ->   Posição B
     
-    System.out.printf("\nPonto C: L=%d  C=%d", PontoDeOrigemD, PontoDeOrigemC);
+    System.out.printf("\n::: Ponto C: L=%d  C=%d", PontoDeOrigemD, PontoDeOrigemC);
     //matriz[PontoDeOrigemD][PontoDeOrigemC] = 'C';   ->   Posição C
     
-    System.out.printf("\nPonto D: L=%d  C=%d", PontoDeDestinoD, PontoDeDestinoC);
+    System.out.printf("\n::: Ponto D: L=%d  C=%d", PontoDeDestinoD, PontoDeDestinoC);
     //matriz[PontoDeDestinoD][PontoDeDestinoC] = 'D'; ->   Posição D
     
     
