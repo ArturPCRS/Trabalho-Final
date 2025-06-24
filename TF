@@ -176,6 +176,13 @@ public class Trabalho{
     usado[PontoDeDestinoB][PontoDeDestinoA] = true;
     usado[PontoDeOrigemD][PontoDeOrigemC] = true;
     usado[PontoDeDestinoD][PontoDeDestinoC] = true;
+    
+    System.out.printf("\nPonto A: L=%d  C=%d", PontoDeOrigemB, PontoDeOrigemA);
+    System.out.printf("\nPonto B: L=%d  C=%d", PontoDeDestinoB, PontoDeDestinoA);
+    System.out.printf("\nPonto C: L=%d  C=%d", PontoDeOrigemD, PontoDeOrigemC);
+    System.out.printf("\nPonto D: L=%d  C=%d", PontoDeDestinoD, PontoDeDestinoC);
+    //Imprime a matriz com todos os dados.
+    System.out.print("\n");
     //Imprime a matriz com todos os dados.
     MostrarMatriz(matriz, linhas, colunas);
 }
