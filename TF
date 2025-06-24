@@ -178,12 +178,22 @@ public class Trabalho{
     usado[PontoDeDestinoD][PontoDeDestinoC] = true;
     
     System.out.printf("\nPonto A: L=%d  C=%d", PontoDeOrigemB, PontoDeOrigemA);
+    //matriz[PontoDeOrigemB][PontoDeOrigemA] = 'A';   ->   Posição A
+    
     System.out.printf("\nPonto B: L=%d  C=%d", PontoDeDestinoB, PontoDeDestinoA);
+    //matriz[PontoDeDestinoB][PontoDeDestinoA] = 'B'; ->   Posição B
+    
     System.out.printf("\nPonto C: L=%d  C=%d", PontoDeOrigemD, PontoDeOrigemC);
+    //matriz[PontoDeOrigemD][PontoDeOrigemC] = 'C';   ->   Posição C
+    
     System.out.printf("\nPonto D: L=%d  C=%d", PontoDeDestinoD, PontoDeDestinoC);
+    //matriz[PontoDeDestinoD][PontoDeDestinoC] = 'D'; ->   Posição D
+    
+    
     //Imprime a matriz com todos os dados.
     System.out.print("\n");
     //Imprime a matriz com todos os dados.
     MostrarMatriz(matriz, linhas, colunas);
 }
 }
+
