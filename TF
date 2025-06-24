@@ -78,9 +78,11 @@ public class Trabalho{
     do{
     PontoDeDestinoC = rd.nextInt(colunas);
     PontoDeDestinoD = rd.nextInt(linhas);
-    } 
-    while ((PontoDeDestinoC == PontoDeOrigemA && PontoDeDestinoD == PontoDeOrigemB) ||
+    }while (
+    //Não deixa ser igual à origem ou destino de A e B
+    (PontoDeDestinoC == PontoDeOrigemA && PontoDeDestinoD == PontoDeOrigemB) ||
     (PontoDeDestinoC == PontoDeDestinoA && PontoDeDestinoD == PontoDeDestinoB) ||
+    // Nem igual à origem de C
     (PontoDeDestinoC == PontoDeOrigemC && PontoDeDestinoD == PontoDeOrigemD));
     
     //Calculo de Distancias;
@@ -115,6 +117,8 @@ public class Trabalho{
     if (matriz[(int)PosicaoB][(int)PosicaoA] == '.'){
     matriz[(int)PosicaoB][(int)PosicaoA] = '+';
     }
+    
+    
     //Linhas
     if (PontoDeDestinoB > PontoDeOrigemB){ // esta abaixo da de origem?
     PosicaoB += DeslocamentoB; 
@@ -123,7 +127,7 @@ public class Trabalho{
     PosicaoB -= DeslocamentoB; 
     }
 
-    //Colunas
+    //colunas
     if (PontoDeDestinoA > PontoDeOrigemA){ // esta a direita da de origem?
     PosicaoA += DeslocamentoA; 
     }
