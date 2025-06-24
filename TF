@@ -38,6 +38,8 @@ public class Trabalho{
     }
     
     char matriz[][] = new char[linhas][colunas];
+    boolean usado[][] = new boolean[linhas][colunas];
+    //boolean para dizer que tal posição está ocupada (evitar sobreposições);
     
     //Montar a matriz com pontos
     for(int l=0; l<linhas; l++){
@@ -59,30 +61,31 @@ public class Trabalho{
     int PontoDeDestinoD;
     
     
-    //Sortear e evitar que os pontos tenham posições sorteadas iguais;
-    //Sorteia A e B;
+    //Sortear e encontrar pontos que tenham posições válidas;
+    //Sorteia valores para A e B;
     do{
     PontoDeOrigemA = rd.nextInt(colunas);
     PontoDeOrigemB = rd.nextInt(linhas);
     PontoDeDestinoA = rd.nextInt(colunas);
     PontoDeDestinoB = rd.nextInt(linhas);
-    }while (PontoDeOrigemA == PontoDeDestinoA && PontoDeOrigemB == PontoDeDestinoB);
+    }while (usado[PontoDeOrigemB][PontoDeOrigemA] || 
+    usado[PontoDeDestinoB][PontoDeDestinoA] || 
+    (PontoDeOrigemA == PontoDeDestinoA && PontoDeOrigemB == PontoDeDestinoB));
 
-    //Sorteia C e D e não repete anteriores;
+    //Sorteia valores para C e D;
     do{
     PontoDeOrigemC = rd.nextInt(colunas);
     PontoDeOrigemD = rd.nextInt(linhas);
-    }while ((PontoDeOrigemC == PontoDeOrigemA && PontoDeOrigemD == PontoDeOrigemB) ||
+    }while (usado[PontoDeOrigemD][PontoDeOrigemC] || 
+    (PontoDeOrigemC == PontoDeOrigemA && PontoDeOrigemD == PontoDeOrigemB) || 
     (PontoDeOrigemC == PontoDeDestinoA && PontoDeOrigemD == PontoDeDestinoB));
 
     do{
     PontoDeDestinoC = rd.nextInt(colunas);
     PontoDeDestinoD = rd.nextInt(linhas);
-    }while (
-    //Não deixa ser igual à origem ou destino de A e B
+    }while (usado[PontoDeDestinoD][PontoDeDestinoC] ||
     (PontoDeDestinoC == PontoDeOrigemA && PontoDeDestinoD == PontoDeOrigemB) ||
     (PontoDeDestinoC == PontoDeDestinoA && PontoDeDestinoD == PontoDeDestinoB) ||
-    // Nem igual à origem de C
     (PontoDeDestinoC == PontoDeOrigemC && PontoDeDestinoD == PontoDeOrigemD));
     
     //Calculo de Distancias;
@@ -116,6 +119,7 @@ public class Trabalho{
     for (int direcao=0; direcao<Distancia; direcao++){
     if (matriz[(int)PosicaoB][(int)PosicaoA] == '.'){
     matriz[(int)PosicaoB][(int)PosicaoA] = '+';
+    usado[(int)PosicaoB][(int)PosicaoA] = true;
     }
     
     
@@ -139,8 +143,9 @@ public class Trabalho{
     
     //Montar a distancia 2 (C->D);
     for (int direcao=0; direcao<Distancia2; direcao++){
-    if (matriz[(int)PosicaoB][(int)PosicaoA] == '.'){
+    if (matriz[(int)PosicaoD][(int)PosicaoC] == '.'){
         matriz[(int)PosicaoD][(int)PosicaoC] = '*';
+        usado[(int)PosicaoD][(int)PosicaoC] = true;
     }
     
     if (PontoDeDestinoD > PontoDeOrigemD){ // esta abaixo da de origem?
@@ -167,6 +172,10 @@ public class Trabalho{
     matriz[PontoDeOrigemD][PontoDeOrigemC] = 'C';
     matriz[PontoDeDestinoD][PontoDeDestinoC] = 'D';
     
+    usado[PontoDeOrigemB][PontoDeOrigemA] = true;
+    usado[PontoDeDestinoB][PontoDeDestinoA] = true;
+    usado[PontoDeOrigemD][PontoDeOrigemC] = true;
+    usado[PontoDeDestinoD][PontoDeDestinoC] = true;
     //Imprime a matriz com todos os dados.
     MostrarMatriz(matriz, linhas, colunas);
 }
