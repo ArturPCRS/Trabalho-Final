@@ -72,6 +72,7 @@ public class Trabalho{
     usado[PontoDeDestinoB][PontoDeDestinoA] || 
     (PontoDeOrigemA == PontoDeDestinoA && PontoDeOrigemB == PontoDeDestinoB));
 
+    //Sortear e encontrar pontos que tenham posições válidas;
     //Sorteia valores para C e D;
     do{
     PontoDeOrigemC = rd.nextInt(colunas);
@@ -79,7 +80,8 @@ public class Trabalho{
     }while (usado[PontoDeOrigemD][PontoDeOrigemC] || 
     (PontoDeOrigemC == PontoDeOrigemA && PontoDeOrigemD == PontoDeOrigemB) || 
     (PontoDeOrigemC == PontoDeDestinoA && PontoDeOrigemD == PontoDeDestinoB));
-
+    
+    //Sortear e encontrar pontos que tenham posições válidas;
     do{
     PontoDeDestinoC = rd.nextInt(colunas);
     PontoDeDestinoD = rd.nextInt(linhas);
@@ -172,6 +174,7 @@ public class Trabalho{
     matriz[PontoDeOrigemD][PontoDeOrigemC] = 'C';
     matriz[PontoDeDestinoD][PontoDeDestinoC] = 'D';
     
+    //Posição está ocupada
     usado[PontoDeOrigemB][PontoDeOrigemA] = true;
     usado[PontoDeDestinoB][PontoDeDestinoA] = true;
     usado[PontoDeOrigemD][PontoDeOrigemC] = true;
@@ -196,4 +199,3 @@ public class Trabalho{
     MostrarMatriz(matriz, linhas, colunas);
 }
 }
-
