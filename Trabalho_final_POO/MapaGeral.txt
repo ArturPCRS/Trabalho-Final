@@ -1,0 +1,17 @@
+
+
+Pessoa.:
+    Nome
+    CPF
+    Profissao
+    Matricula
+
+Profissao
+    ESTUDANTE
+    FUNCIONARIO_PUCRS
+    PROFISSIONAL_TECNOPUC
+
+Estacionamento
+    Local
+    Custo_Estacionamento
+    Capacidade
